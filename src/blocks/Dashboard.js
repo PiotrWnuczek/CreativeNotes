@@ -1,24 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaReact } from 'react-icons/fa';
-import Header from 'components/Header';
-import Form from 'components/Form';
 
-const Wrapper = styled.h1`
+const Wrapper = styled.div`
   text-align: center;
-  margin: auto;
+`;
+
+const Title = styled.h1`
+  font-size: 1rem;
 `;
 
 const Icon = styled(FaReact)`
   font-size: 5rem;
-  font-weight: 900;
 `;
 
 const Start = () => (
   <Wrapper>
-    <Header title='StartApp' text='created by Piotr Wnuczek' />
+    <Title>Created by Piotr Wnuczek</Title>
     <Icon />
-    <Form />
   </Wrapper>
 );
 

@@ -1,7 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from 'views/Root';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+//import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+//import { reduxFirestore, getFirestore } from 'redux-firestore';
+import { persistStore, persistReducer } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+import storage from 'redux-persist/lib/storage';
+import reducer from 'logic/reducer';
+//import config from 'logic/config';
+import thunk from 'redux-thunk';
+import Root from 'blocks/Root';
 
+const persistConfig = { key: 'root', storage };
+const persistedReducer = persistReducer(persistConfig, reducer);
+
+const store = createStore(persistedReducer, compose(
+  applyMiddleware(thunk), //applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+  //reactReduxFirebase(config, { userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true }),
+  //reduxFirestore(config),
+));
+
+const persistor = persistStore(store);
+
+//store.firebaseAuthIsReady.then(() => {
 ReactDOM.render(
-  <Root />, document.getElementById('root')
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <Root />
+    </PersistGate>
+  </Provider>,
+  document.getElementById('root'),
 );
+//});
