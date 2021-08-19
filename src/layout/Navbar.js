@@ -13,15 +13,11 @@ const Title = styled.h1`
   margin: 0;
 `;
 
-const Nav = styled(Link)`
-  font-size: 1rem;
-`;
-
 const Navbar = () => (
   <Wrapper>
     <Title>Creative Notebook</Title>
     <div>
-      <Nav>Notes</Nav>
+      <Link to='/'>Notes</Link>
     </div>
   </Wrapper>
 );
