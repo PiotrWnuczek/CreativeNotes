@@ -1,8 +1,8 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Navbar from 'layout/Navbar';
-import Notes from 'blocks/Notes';
+import Navbar from 'blocks/Navbar';
+import Notes from 'layout/Notes';
 
 <link href='https://fonts.googleapis.com/css2?family=Lato:wght@400;700' />
 
