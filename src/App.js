@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from 'blocks/Navbar';
 import Notes from 'layout/Notes';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 <link href='https://fonts.googleapis.com/css2?family=Lato:wght@400;700' />
 
 const GlobalStyle = createGlobalStyle`
