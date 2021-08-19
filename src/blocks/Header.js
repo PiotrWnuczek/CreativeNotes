@@ -9,13 +9,13 @@ const Header = () => (
       <Navbar.Brand as={Link} to='/'>CreativeNootebook</Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className='justify-content-end'>
-        <Nav className='mx-2'>
+        <Nav className='mx-lg-3'>
           <Nav.Link as={NavLink} to='/create'>New Note</Nav.Link>
           <Nav.Link as={NavLink} to='/logout'>Log Out</Nav.Link>
           <Nav.Link as={NavLink} to='/signup'>Sign Up</Nav.Link>
           <Nav.Link as={NavLink} to='/signin'>Sign In</Nav.Link>
         </Nav>
-        <Button as={NavLink} to='/' className='rounded-pill'>PW</Button>
+        <Button as={NavLink} to='/'>PW</Button>
       </Navbar.Collapse>
     </Container>
   </Navbar>
