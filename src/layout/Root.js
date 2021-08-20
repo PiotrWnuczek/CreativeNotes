@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Topbar from 'blocks/Topbar';
 import Notes from 'layout/Notes';
+import Create from 'layout/Create';
 import Details from 'layout/Details';
 import Signin from 'auth/Signin';
 import Signup from 'auth/Signup';
@@ -23,6 +24,7 @@ const Root = () => (
     <Topbar />
     <Switch>
       <Route exact path='/' component={Notes} />
+      <Route path='/create' component={Create} />
       <Route path='/notes/:id' component={Details} />
       <Route path='/signin' component={Signin} />
       <Route path='/signup' component={Signup} />

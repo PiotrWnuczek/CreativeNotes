@@ -12,7 +12,7 @@ const Title = styled.h1`
 const Signup = () => (
   <Container className='py-4'>
     <Title>Sign Up</Title>
-    <Formik initialValues={{ email: '', password: '' }}
+    <Formik initialValues={{ email: '', password: '', firstname: '', lastname: '' }}
       onSubmit={(values, { resetForm }) => {
         console.log(values);
         resetForm();
