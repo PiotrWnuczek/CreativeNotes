@@ -10,7 +10,7 @@ import storage from 'redux-persist/lib/storage';
 //import firebase from 'logic/firebase';
 import reducer from 'logic/reducer';
 import thunk from 'redux-thunk';
-import App from 'App';
+import Root from 'layout/Root';
 
 const persistConfig = { key: 'root', storage };
 const persistedReducer = persistReducer(persistConfig, reducer);
@@ -27,7 +27,7 @@ const persistor = persistStore(store);
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <Root />
     </PersistGate>
   </Provider>,
   document.getElementById('root'),

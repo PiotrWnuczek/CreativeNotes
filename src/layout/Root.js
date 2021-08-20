@@ -12,10 +12,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Lato';
   }
-  h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-  }
 `;
 
 const Root = () => (

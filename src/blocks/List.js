@@ -1,9 +1,21 @@
 import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import styled from 'styled-components';
+import { Card } from 'react-bootstrap';
+
+const Wrapper = styled.div`
+  text-align: center;
+`;
+
+const Title = styled.h1`
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 2rem;
+`;
 
 const List = () => (
-  <Row className='m-3' xs={1} md={2}>
-    <Col className='p-3'><Card>
+  <Wrapper className='p-4'>
+    <Title>Notes</Title>
+    <Card className='m-4'>
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>
@@ -11,8 +23,8 @@ const List = () => (
           the card's content.
         </Card.Text>
       </Card.Body>
-    </Card></Col>
-    <Col className='p-3'><Card>
+    </Card>
+    <Card className='m-4'>
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>
@@ -20,8 +32,8 @@ const List = () => (
           the card's content.
         </Card.Text>
       </Card.Body>
-    </Card></Col>
-  </Row>
+    </Card>
+  </Wrapper>
 );
 
 export default List;
