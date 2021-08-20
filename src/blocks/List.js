@@ -7,7 +7,7 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   margin: 2rem;
 `;
