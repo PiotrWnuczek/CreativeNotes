@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import { Navbar, Nav } from 'react-bootstrap';
 
-const Header = () => (
+const Topbar = () => (
   <Navbar bg="light" expand="lg">
     <Container>
       <Navbar.Brand as={Link} to='/'>CreativeNootebook</Navbar.Brand>
@@ -21,4 +21,4 @@ const Header = () => (
   </Navbar>
 );
 
-export default Header;
+export default Topbar;
