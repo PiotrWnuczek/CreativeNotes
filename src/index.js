@@ -8,12 +8,12 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import storage from 'redux-persist/lib/storage';
 //import firebase from 'logic/firebase';
-import reducer from 'logic/reducer';
+import rootReducer from 'logic/rootReducer';
 import thunk from 'redux-thunk';
 import Root from 'layout/Root';
 
 const persistConfig = { key: 'root', storage };
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(persistedReducer, compose(
   applyMiddleware(thunk), //applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
