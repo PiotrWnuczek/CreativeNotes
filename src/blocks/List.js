@@ -12,11 +12,12 @@ const Title = styled.h1`
   margin: 2rem;
 `;
 
-const List = () => (
+const List = ({ notes }) => (
   <Wrapper className='p-4'>
     <Title>Notes</Title>
-    <Item />
-    <Item />
+    {notes && notes.map(
+      note => <Item note={note} key={note.id} />
+    )}
   </Wrapper>
 );
 
