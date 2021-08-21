@@ -3,10 +3,15 @@ const initial = {
     { id: 1, title: 'Example Note', content: 'Lorem ipsum dolor sit amet' },
     { id: 2, title: 'Example Note', content: 'Lorem ipsum dolor sit amet' },
   ]
-}
+};
 
 const noteReducer = (state = initial, action) => {
-  return state;
-}
+  switch (action.type) {
+    case 'CREATE':
+      console.log(action.data); return state;
+    default:
+      return state;
+  }
+};
 
 export default noteReducer;

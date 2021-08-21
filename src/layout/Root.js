@@ -1,7 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Topbar from 'blocks/Topbar';
+import Menu from 'blocks/Menu';
 import Notes from 'layout/Notes';
 import Create from 'layout/Create';
 import Details from 'layout/Details';
@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 const Root = () => (
   <BrowserRouter>
     <GlobalStyle />
-    <Topbar />
+    <Menu />
     <Switch>
       <Route exact path='/' component={Notes} />
       <Route path='/create' component={Create} />

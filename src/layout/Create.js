@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { create } from 'logic/noteActions';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 
@@ -9,12 +11,12 @@ const Title = styled.h1`
   margin: 2rem 0;
 `;
 
-const Create = () => (
+const Create = ({ create }) => (
   <Container className='py-4'>
     <Title>Create new note</Title>
     <Formik initialValues={{ title: '', content: '' }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
+        create(values);
         resetForm();
       }}>
       {({ values, handleChange, handleSubmit }) => (
@@ -48,4 +50,8 @@ const Create = () => (
   </Container >
 );
 
-export default Create;
+const mapDispatchToProps = (dispatch) => ({
+  create: (data) => dispatch(create(data)),
+});
+
+export default connect(null, mapDispatchToProps)(Create);

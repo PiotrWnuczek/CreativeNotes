@@ -7,7 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 //import { persistStore, persistReducer } from 'redux-persist';
 //import { PersistGate } from 'redux-persist/integration/react';
 //import storage from 'redux-persist/lib/storage';
-//import firebase from 'logic/firebase';
+//import firebaseConfig from 'logic/firebaseConfig';
 import rootReducer from 'logic/rootReducer';
 import thunk from 'redux-thunk';
 import Root from 'layout/Root';
@@ -16,11 +16,13 @@ import Root from 'layout/Root';
 //const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(rootReducer, compose(
-  applyMiddleware(thunk), //applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-  //reactReduxFirebase(firebase, { userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true }),
-  //reduxFirestore(firebase),
+  applyMiddleware(thunk),
+  /*applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+  reactReduxFirebase(firebaseConfig, {
+    userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true
+  }),
+  reduxFirestore(firebaseConfig),*/
 ));
-
 //const persistor = persistStore(store);
 
 //store.firebaseAuthIsReady.then(() => {

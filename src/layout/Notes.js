@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Row, Col } from 'react-bootstrap';
 import List from 'blocks/List';
 import Info from 'blocks/Info';
 
