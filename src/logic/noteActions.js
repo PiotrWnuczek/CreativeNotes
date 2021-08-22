@@ -1,3 +1,3 @@
-export const create = (data) => (dispatch) => {
+export const create = (data) => (dispatch, getState, { getFirebase, getFirestore }) => {
   dispatch({ type: 'CREATE', data });
 };

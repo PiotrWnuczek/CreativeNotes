@@ -2,36 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-//import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-//import { reduxFirestore, getFirestore } from 'redux-firestore';
-//import { persistStore, persistReducer } from 'redux-persist';
-//import { PersistGate } from 'redux-persist/integration/react';
-//import storage from 'redux-persist/lib/storage';
-//import firebaseConfig from 'logic/firebaseConfig';
+import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
+import { getFirestore, reduxFirestore } from 'redux-firestore';
+import firebaseConfig from 'logic/firebaseConfig';
 import rootReducer from 'logic/rootReducer';
 import thunk from 'redux-thunk';
 import Root from 'layout/Root';
 
-//const persistConfig = { key: 'CreativeNotebook', storage };
-//const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 const store = createStore(rootReducer, compose(
-  applyMiddleware(thunk),
-  /*applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-  reactReduxFirebase(firebaseConfig, {
-    userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true
-  }),
-  reduxFirestore(firebaseConfig),*/
+  applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+  reactReduxFirebase(firebaseConfig),
+  reduxFirestore(firebaseConfig),
 ));
-//const persistor = persistStore(store);
 
-//store.firebaseAuthIsReady.then(() => {
 ReactDOM.render(
   <Provider store={store}>
-    {/*<PersistGate loading={null} persistor={persistor}>*/}
     <Root />
-    {/*</PersistGate>*/}
   </Provider>,
   document.getElementById('root'),
 );
-//});
