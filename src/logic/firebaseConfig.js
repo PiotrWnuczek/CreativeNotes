@@ -16,4 +16,4 @@ firebase.initializeApp({
 firebase.analytics();
 firebase.firestore().settings({ timestampsInSnapshots: true });
 
-export default firebase
+export default firebase;

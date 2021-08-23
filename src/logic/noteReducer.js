@@ -8,7 +8,11 @@ const initial = {
 const noteReducer = (state = initial, action) => {
   switch (action.type) {
     case 'CREATE':
-      console.log(action.data); return state;
+      console.log(action.data);
+      return state;
+    case 'ERROR':
+      console.log(action.err);
+      return state;
     default:
       return state;
   }
