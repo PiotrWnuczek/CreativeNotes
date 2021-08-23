@@ -1,6 +1,6 @@
-export const create = (data) => (dispatch, getState, { getFirebase, getFirestore }) => {
+export const create = (data) => (dispatch, { getFirestore }) => {
   const firestore = getFirestore();
-  firestore.collections('notes').add({
+  firestore.collection('notes').add({
     ...data,
     firstname: 'Piotr',
     lastname: 'Wnuczek',
