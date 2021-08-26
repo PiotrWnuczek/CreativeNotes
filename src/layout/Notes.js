@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
 import { Row, Col } from 'react-bootstrap';
 import List from 'blocks/List';
 import Info from 'blocks/Info';
@@ -16,7 +18,10 @@ const Notes = ({ notes }) => (
 );
 
 const mapStateToProps = (state) => ({
-  notes: state.note.notes,
+  notes: state.firestore.ordered.notes,
 });
 
-export default connect(mapStateToProps)(Notes);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: 'notes' }]),
+)(Notes);

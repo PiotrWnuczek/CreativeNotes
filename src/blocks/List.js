@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import Item from 'blocks/Item';
 
 const Wrapper = styled.div`
@@ -15,8 +16,12 @@ const Title = styled.h1`
 const List = ({ notes }) => (
   <Wrapper className='p-4'>
     <Title>Notes</Title>
-    {notes && notes.map(
-      note => <Item note={note} key={note.id} />
+    {notes && notes.map(note =>
+      <Link to={'/notes/' + note.id}
+        className='text-reset text-decoration-none'
+        key={note.id}>
+        <Item note={note} />
+      </Link>
     )}
   </Wrapper>
 );

@@ -1,17 +1,27 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { firestoreConnect } from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-const Details = (props) => {
-  const id = props.match.params.id
+const Details = ({ note }) => (
+  note ? <Container className='py-4'>
+    <h1>{note.title}</h1>
+    <h3>{note.content}</h3>
+    <hr />
+    <p>{note.firstname} {note.lastname} | Date</p>
+  </Container> :
+    <p className='text-center'>loading...</p>
+);
 
-  return (
-    <Container className='py-4'>
-      <h1>Note Title {id}</h1>
-      <h3>Lorem ipsum dolor sit amet.</h3>
-      <hr />
-      <p>Author | Date</p>
-    </Container>
-  )
-};
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const notes = state.firestore.data.notes;
+  const note = notes && notes[id];
+  return { note };
+}
 
-export default Details;
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: 'notes' }]),
+)(Details);
