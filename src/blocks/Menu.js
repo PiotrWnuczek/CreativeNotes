@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import { Navbar, Nav } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-const Topbar = () => (
+const Menu = () => (
   <Navbar bg="light" expand="lg">
     <Container>
       <Navbar.Brand as={Link} to='/'>CreativeNootebook</Navbar.Brand>
@@ -21,4 +22,8 @@ const Topbar = () => (
   </Navbar>
 );
 
-export default Topbar;
+const mapStateToProps = (state) => (console.log(state), {
+
+});
+
+export default connect(mapStateToProps)(Menu);
