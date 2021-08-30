@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import { Navbar, Nav } from 'react-bootstrap';
 
-const Menu = ({ auth, signout }) => (
+const Menu = ({ signout, auth, profile }) => (
   <Navbar bg="light" expand="lg">
     <Container>
       <Navbar.Brand as={Link} to='/'>CreativeNootebook</Navbar.Brand>
@@ -17,7 +17,7 @@ const Menu = ({ auth, signout }) => (
           {auth.uid && <Nav.Link as={NavLink} to='/create'>New Note</Nav.Link>}
           {auth.uid && <Nav.Link onClick={signout}>Sign Out</Nav.Link>}
         </Nav>
-        <Button as={NavLink} to='/'>PW</Button>
+        {auth.uid && <Button as={NavLink} to='/'>{profile.initials}</Button>}
       </Navbar.Collapse>
     </Container>
   </Navbar>
@@ -25,6 +25,7 @@ const Menu = ({ auth, signout }) => (
 
 const mapStateToProps = (state) => ({
   auth: state.firebase.auth,
+  profile: state.firebase.profile,
 });
 
 const mapDispatchToPorps = (dispatch) => ({
