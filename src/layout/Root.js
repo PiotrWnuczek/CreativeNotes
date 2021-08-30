@@ -5,6 +5,7 @@ import Menu from 'blocks/Menu';
 import Notes from 'layout/Notes';
 import Create from 'layout/Create';
 import Details from 'layout/Details';
+import Private from 'auth/Private';
 import Signin from 'auth/Signin';
 import Signup from 'auth/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -23,11 +24,11 @@ const Root = () => (
     <GlobalStyle />
     <Menu />
     <Switch>
-      <Route exact path='/' component={Notes} />
-      <Route path='/create' component={Create} />
-      <Route path='/notes/:id' component={Details} />
-      <Route path='/signin' component={Signin} />
-      <Route path='/signup' component={Signup} />
+      <Private exact path='/'><Notes /></Private>
+      <Private path='/create'><Create /></Private>
+      <Private path='/notes/:id'><Details /></Private>
+      <Route path='/signin'><Signin /></Route>
+      <Route path='/signup'><Signup /></Route>
     </Switch>
   </BrowserRouter>
 );

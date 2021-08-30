@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signin } from 'logic/authActions';
 import { Container, Form, Button } from 'react-bootstrap';
@@ -11,7 +12,8 @@ const Title = styled.h1`
   margin: 2rem 0;
 `;
 
-const Signin = ({ signin, error }) => (
+const Signin = ({ signin, error, auth }) => (auth.uid ?
+  <Redirect to='/' /> :
   <Container className='py-4'>
     <Title>Sign In</Title>
     <Formik initialValues={{ email: '', password: '' }}
@@ -48,11 +50,12 @@ const Signin = ({ signin, error }) => (
         </Form>
       )}
     </Formik>
-  </Container >
+  </Container>
 );
 
 const mapStateToProps = (state) => ({
   error: state.auth.error,
+  auth: state.firebase.auth,
 });
 
 const mapDispatchToProps = (dispatch) => ({

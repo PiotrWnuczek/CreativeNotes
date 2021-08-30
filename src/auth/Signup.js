@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 
@@ -9,10 +11,14 @@ const Title = styled.h1`
   margin: 2rem 0;
 `;
 
-const Signup = () => (
+const Signup = ({ auth }) => (auth.uid ?
+  <Redirect to='/' /> :
   <Container className='py-4'>
     <Title>Sign Up</Title>
-    <Formik initialValues={{ email: '', password: '', firstname: '', lastname: '' }}
+    <Formik initialValues={{
+      email: '', password: '',
+      firstname: '', lastname: '',
+    }}
       onSubmit={(values, { resetForm }) => {
         console.log(values);
         resetForm();
@@ -68,4 +74,8 @@ const Signup = () => (
   </Container >
 );
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  auth: state.firebase.auth,
+});
+
+export default connect(mapStateToProps)(Signup);
