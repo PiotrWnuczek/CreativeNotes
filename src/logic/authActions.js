@@ -1,11 +1,11 @@
-export const signin = (credentials) => (dispatch, { getFirebase }) => {
+export const signin = (creds) => (dispatch, gs, { getFirebase }) => {
   const firebase = getFirebase();
-  firebase.auth().signinWithEmailAndPassword(
-    credentials.email,
-    credentials.password,
+  firebase.auth().signInWithEmailAndPassword(
+    creds.email,
+    creds.password,
   ).then(() => {
-    dispatch({ type: 'SIGNIN' });
+    dispatch({ type: 'SIGNIN_SUCCESS' });
   }).catch((err) => {
-    dispatch({ type: 'ERROR', err })
+    dispatch({ type: 'SIGNIN_ERROR', err })
   })
 }

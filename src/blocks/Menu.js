@@ -22,8 +22,8 @@ const Menu = () => (
   </Navbar>
 );
 
-const mapStateToProps = (state) => (console.log(state), {
-
-});
+const mapStateToProps = (state) => {
+  console.log(state); return { state };
+};
 
 export default connect(mapStateToProps)(Menu);

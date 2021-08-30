@@ -10,8 +10,7 @@ const Details = ({ note }) => (
     <h3>{note.content}</h3>
     <hr />
     <p>{note.firstname} {note.lastname} | Date</p>
-  </Container> :
-    <p className='text-center'>loading...</p>
+  </Container> : <p className='text-center'>loading...</p>
 );
 
 const mapStateToProps = (state, ownProps) => {
@@ -19,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   const notes = state.firestore.data.notes;
   const note = notes && notes[id];
   return { note };
-}
+};
 
 export default compose(
   connect(mapStateToProps),

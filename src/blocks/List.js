@@ -14,7 +14,7 @@ const Title = styled.h1`
 `;
 
 const List = ({ notes }) => (
-  <Wrapper className='p-4'>
+  notes ? <Wrapper className='p-4'>
     <Title>Notes</Title>
     {notes && notes.map(note =>
       <Link to={'/notes/' + note.id}
@@ -23,7 +23,7 @@ const List = ({ notes }) => (
         <Item note={note} />
       </Link>
     )}
-  </Wrapper>
+  </Wrapper> : <p className='text-center'>loading...</p>
 );
 
 export default List;
