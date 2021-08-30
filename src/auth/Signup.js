@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { signup } from 'logic/authActions';
 import { Redirect } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
@@ -11,16 +12,13 @@ const Title = styled.h1`
   margin: 2rem 0;
 `;
 
-const Signup = ({ auth }) => (auth.uid ?
+const Signup = ({ signup, error, auth }) => (auth.uid ?
   <Redirect to='/' /> :
   <Container className='py-4'>
     <Title>Sign Up</Title>
-    <Formik initialValues={{
-      email: '', password: '',
-      firstname: '', lastname: '',
-    }}
+    <Formik initialValues={{ email: '', password: '', firstname: '', lastname: '' }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
+        signup(values);
         resetForm();
       }}>
       {({ values, handleChange, handleSubmit }) => (
@@ -68,6 +66,7 @@ const Signup = ({ auth }) => (auth.uid ?
           <Button variant='secondary' type='submit'>
             Sign Up
           </Button>
+          {error && <p className='text-danger my-2'>{error}</p>}
         </Form>
       )}
     </Formik>
@@ -75,7 +74,13 @@ const Signup = ({ auth }) => (auth.uid ?
 );
 
 const mapStateToProps = (state) => ({
+  error: state.auth.error,
   auth: state.firebase.auth,
 });
 
-export default connect(mapStateToProps)(Signup);
+const mapDispatchToProps = (dispatch) => ({
+  signup: (user) => dispatch(signup(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)
+  (Signup);

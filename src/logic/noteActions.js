@@ -9,6 +9,6 @@ export const create = (data) => (dispatch, gs, { getFirestore }) => {
   }).then(() => {
     dispatch({ type: 'CREATE_SUCCESS', data });
   }).catch((err) => {
-    dispatch({ type: 'CREATE_ERROR', err })
+    dispatch({ type: 'CREATE_ERROR', err });
   })
 };
