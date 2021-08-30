@@ -5,17 +5,17 @@ import { Link, NavLink } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
 import { Navbar, Nav } from 'react-bootstrap';
 
-const Menu = ({ signout }) => (
+const Menu = ({ auth, signout }) => (
   <Navbar bg="light" expand="lg">
     <Container>
       <Navbar.Brand as={Link} to='/'>CreativeNootebook</Navbar.Brand>
       <Navbar.Toggle />
       <Navbar.Collapse className='justify-content-end'>
         <Nav className='mx-lg-3'>
-          <Nav.Link as={NavLink} to='/create'>New Note</Nav.Link>
-          <Nav.Link as={NavLink} to='/signup'>Sign Up</Nav.Link>
-          <Nav.Link as={NavLink} to='/signin'>Sign In</Nav.Link>
-          <Nav.Link onClick={signout}>Sign Out</Nav.Link>
+          {!auth.uid && <Nav.Link as={NavLink} to='/signup'>Sign Up</Nav.Link>}
+          {!auth.uid && <Nav.Link as={NavLink} to='/signin'>Sign In</Nav.Link>}
+          {auth.uid && <Nav.Link as={NavLink} to='/create'>New Note</Nav.Link>}
+          {auth.uid && <Nav.Link onClick={signout}>Sign Out</Nav.Link>}
         </Nav>
         <Button as={NavLink} to='/'>PW</Button>
       </Navbar.Collapse>
@@ -23,9 +23,9 @@ const Menu = ({ signout }) => (
   </Navbar>
 );
 
-const mapStateToProps = (state) => {
-  console.log(state); return { state };
-};
+const mapStateToProps = (state) => ({
+  auth: state.firebase.auth,
+});
 
 const mapDispatchToPorps = (dispatch) => ({
   signout: () => dispatch(signout()),

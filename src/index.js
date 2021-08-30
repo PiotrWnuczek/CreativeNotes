@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { isLoaded } from 'react-redux-firebase';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { getFirebase, ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { getFirestore, createFirestoreInstance } from 'redux-firestore';
@@ -26,10 +28,17 @@ const rrfProps = {
   createFirestoreInstance,
 };
 
+const AuthIsLoaded = ({ children }) => {
+  const auth = useSelector(state => state.firebase.auth);
+  return isLoaded(auth) ? children : <p className='text-center'>loading...</p>;
+};
+
 ReactDOM.render(
   <ReactReduxFirebaseProvider {...rrfProps}>
     <Provider store={store}>
-      <Root />
+      <AuthIsLoaded>
+        <Root />
+      </AuthIsLoaded>
     </Provider>
   </ReactReduxFirebaseProvider>,
   document.getElementById('root'),
