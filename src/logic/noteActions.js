@@ -1,10 +1,12 @@
-export const create = (data) => (dispatch, gs, { getFirestore }) => {
+export const create = (data) => (dispatch, getState, { getFirestore }) => {
   const firestore = getFirestore();
+  const profile = getState().firebase.profile;
+  const authorid = getState().firebase.auth.uid;
   firestore.collection('notes').add({
     ...data,
-    firstname: 'Piotr',
-    lastname: 'Wnuczek',
-    authorid: 12345,
+    firstname: profile.firstname,
+    lastname: profile.lastname,
+    authorid: authorid,
     createdat: new Date(),
   }).then(() => {
     dispatch({ type: 'CREATE_SUCCESS', data });
