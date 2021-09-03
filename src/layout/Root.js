@@ -24,11 +24,11 @@ const Root = () => (
     <GlobalStyle />
     <Menu />
     <Switch>
-      <Private exact path='/'><Notes /></Private>
-      <Private path='/create'><Create /></Private>
-      <Private path='/notes/:id'><Details /></Private>
-      <Route path='/signin'><Signin /></Route>
-      <Route path='/signup'><Signup /></Route>
+      <Private exact path='/' component={Notes} />
+      <Private path='/create' component={Create} />
+      <Private path='/notes/:id' component={Details} />
+      <Route path='/signin' component={Signin} />
+      <Route path='/signup' component={Signup} />
     </Switch>
   </BrowserRouter>
 );
