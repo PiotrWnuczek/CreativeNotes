@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Container } from 'react-bootstrap';
 import { firestoreConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
@@ -9,7 +10,7 @@ const Details = ({ note }) => (
     <h1>{note.title}</h1>
     <h3>{note.content}</h3>
     <hr />
-    <p>{note.firstname} {note.lastname} | Date</p>
+    <p>{note.firstname} {note.lastname} | {moment(note.createdat.toDate()).calendar()}</p>
   </Container> : <p className='text-center'>loading...</p>
 );
 

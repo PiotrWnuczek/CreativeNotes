@@ -11,12 +11,12 @@ const Title = styled.h1`
   margin: 2rem 0;
 `;
 
-const Create = ({ create }) => (
+const Create = ({ create, history }) => (
   <Container className='py-4'>
     <Title>Create new note</Title>
     <Formik initialValues={{ title: '', content: '' }}
       onSubmit={(values, { resetForm }) => {
-        create(values);
+        create(values); history.push('/');
         resetForm();
       }}>
       {({ values, handleChange, handleSubmit }) => (
