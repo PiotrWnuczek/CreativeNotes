@@ -4,13 +4,13 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyAwNphJG7ehmxFIRDPIGZepnFKMtFQ0QXg',
-  authDomain: 'creative-notebook.firebaseapp.com',
-  projectId: 'creative-notebook',
-  storageBucket: 'creative-notebook.appspot.com',
-  messagingSenderId: '567980262050',
-  appId: '1:567980262050:web:b7ede430fa4ae8cea44dfb',
-  measurementId: 'G-CPS5HZP9RD',
+  apiKey: 'AIzaSyA6NVtuNlis_SAytnYJZVYo5wCc2N6FGtY',
+  authDomain: 'creativenotes-app.firebaseapp.com',
+  projectId: 'creativenotes-app',
+  storageBucket: 'creativenotes-app.appspot.com',
+  messagingSenderId: '486916899257',
+  appId: '1:486916899257:web:3855e5717718f8a83bf668',
+  measurementId: 'G-LW5EEG920Q',
 });
 
 firebase.analytics();
