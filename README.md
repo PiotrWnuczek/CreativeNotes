@@ -1,11 +1,10 @@
-# StatrApp
+# CreativeNotes
 
-Simple application prepared as the basis for more advanced applications in React.
+Creative note taking application programmed with React, Redux and Firebase.
 
 ### Technologies:
 - Project setup - Create React App
 - Base technology - React, JavaScript
-- Data layer - Redux, Persist
-- Api connection - Axios
+- Data layer - Redux, Firebase
 - Page routing - React Router
 - Interface styles - Styled Components
