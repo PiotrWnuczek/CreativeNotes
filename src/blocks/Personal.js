@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Element from 'blocks/Element';
+import Note from 'blocks/Note';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -13,17 +13,17 @@ const Title = styled.h1`
   margin: 2rem;
 `;
 
-const Private = ({ notes }) => (
-  notes ? <Wrapper className='p-4'>
-    <Title>Private Notes</Title>
-    {notes && notes.map(note =>
+const Personal = ({ personal }) => (
+  personal ? <Wrapper className='p-4'>
+    <Title>Personal Notes</Title>
+    {personal && personal.map(note =>
       <Link to={'/notes/' + note.id}
         className='text-reset text-decoration-none'
         key={note.id}>
-        <Element note={note} />
+        <Note note={note} />
       </Link>
     )}
   </Wrapper> : <p className='text-center'>loading...</p>
 );
 
-export default Private;
+export default Personal;

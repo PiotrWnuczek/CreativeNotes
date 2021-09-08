@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Accordion } from 'react-bootstrap';
-import Element from 'blocks/Element';
+import Note from 'blocks/Note';
 
 const Category = ({ category }) => (
   <Card className='m-4'>
@@ -9,8 +9,8 @@ const Category = ({ category }) => (
     </Accordion.Toggle>
     <Accordion.Collapse eventKey={category.id}>
       <Card.Body>
-        <Element note={{ title: 'Example Note' }} />
-        <Element note={{ title: 'Example Note' }} />
+        <Note note={{ title: 'Example Note' }} />
+        <Note note={{ title: 'Example Note' }} />
       </Card.Body>
     </Accordion.Collapse>
   </Card>

@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Card } from 'react-bootstrap';
 
-const Element = ({ note }) => (
+const Note = ({ note }) => (
   <Card className='m-4'>
     <Card.Body>
       <Card.Title>{note.title}</Card.Title>
@@ -16,4 +16,4 @@ const Element = ({ note }) => (
   </Card>
 );
 
-export default Element;
+export default Note;

@@ -13,9 +13,9 @@ const Title = styled.h1`
   margin: 2rem;
 `;
 
-const Public = () => (
+const Social = () => (
   <Wrapper className='p-4'>
-    <Title>Public Notes</Title>
+    <Title>Social Notes</Title>
     <Accordion defaultActiveKey='1'>
       <Category category={{ id: '1' }} />
       <Category category={{ id: '2' }} />
@@ -23,4 +23,4 @@ const Public = () => (
   </Wrapper>
 );
 
-export default Public;
+export default Social;
