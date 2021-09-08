@@ -26,7 +26,7 @@ const Root = () => (
     <Switch>
       <Protect exact path='/' component={Panel} />
       <Protect path='/create' component={Create} />
-      <Protect path='/notes/:id' component={Details} />
+      <Protect path='/:type/:id' component={Details} />
       <Route path='/signin' component={Signin} />
       <Route path='/signup' component={Signup} />
     </Switch>

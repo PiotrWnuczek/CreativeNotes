@@ -14,9 +14,10 @@ const Title = styled.h1`
 const Create = ({ create, history }) => (
   <Container className='py-4'>
     <Title>Create new note</Title>
-    <Formik initialValues={{ title: '', content: '' }}
+    <Formik initialValues={{ title: '', content: '', type: 'personal' }}
       onSubmit={(values, { resetForm }) => {
-        create(values); history.push('/');
+        create(values);
+        history.push('/');
         resetForm();
       }}>
       {({ values, handleChange, handleSubmit }) => (
@@ -39,6 +40,25 @@ const Create = ({ create, history }) => (
               placeholder='content'
               onChange={handleChange}
               value={values.content}
+            />
+          </Form.Group>
+          <Form.Group className='mb-3'>
+            <Form.Label>Note Type</Form.Label>
+            <Form.Check
+              type='radio'
+              name='type'
+              id='personal'
+              label='personal'
+              value='personal'
+              onChange={handleChange}
+            />
+            <Form.Check
+              type='radio'
+              name='type'
+              id='social'
+              label='social'
+              value='social'
+              onChange={handleChange}
             />
           </Form.Group>
           <Button variant='secondary' type='submit'>

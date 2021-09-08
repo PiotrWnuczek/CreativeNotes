@@ -17,7 +17,7 @@ const Personal = ({ personal }) => (
   personal ? <Wrapper className='p-4'>
     <Title>Personal Notes</Title>
     {personal && personal.map(note =>
-      <Link to={'/notes/' + note.id}
+      <Link to={'/personal/' + note.id}
         className='text-reset text-decoration-none'
         key={note.id}>
         <Note note={note} />

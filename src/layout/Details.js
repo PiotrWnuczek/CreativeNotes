@@ -10,18 +10,40 @@ const Details = ({ note }) => (
     <h1>{note.title}</h1>
     <h3>{note.content}</h3>
     <hr />
-    <p>{note.firstname} {note.lastname} | {moment(note.createdat.toDate()).calendar()}</p>
+    <p>{note.firstname} {note.lastname}</p>
+    <p>{moment(note.createdat.toDate()).calendar()}</p>
   </Container> : <p className='text-center'>loading...</p>
 );
 
 const mapStateToProps = (state, ownProps) => {
+  const type = ownProps.match.params.type;
   const id = ownProps.match.params.id;
-  const notes = state.firestore.data.notes;
-  const note = notes && notes[id];
-  return { note };
+  const personal = state.firestore.data.personal;
+  const social = state.firestore.data.social;
+  if (type === 'personal') {
+    return {
+      auth: state.firebase.auth,
+      note: personal && personal[id],
+    }
+  } else if (type === 'social') {
+    return {
+      auth: state.firebase.auth,
+      note: social && social[id],
+    }
+  }
 };
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{ collection: 'notes' }]),
+  firestoreConnect(props => [
+    {
+      collection: 'users', doc: props.auth.uid,
+      subcollections: [{ collection: 'notes' }],
+      storeAs: 'personal',
+    },
+    {
+      collection: 'notes',
+      storeAs: 'social',
+    },
+  ]),
 )(Details);

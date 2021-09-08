@@ -1,7 +1,9 @@
 import React from 'react';
-import { Accordion } from 'react-bootstrap';
 import styled from 'styled-components';
-import Category from './Category';
+import { Link } from 'react-router-dom';
+//import { Accordion } from 'react-bootstrap';
+//import Category from 'blocks/Category';
+import Note from 'blocks/Note';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -13,14 +15,21 @@ const Title = styled.h1`
   margin: 2rem;
 `;
 
-const Social = () => (
-  <Wrapper className='p-4'>
+const Social = ({ social }) => (
+  social ? <Wrapper className='p-4'>
     <Title>Social Notes</Title>
-    <Accordion defaultActiveKey='1'>
+    {/*<Accordion defaultActiveKey='1'>
       <Category category={{ id: '1' }} />
       <Category category={{ id: '2' }} />
-    </Accordion>
-  </Wrapper>
+    </Accordion>*/}
+    {social && social.map(note =>
+      <Link to={'/social/' + note.id}
+        className='text-reset text-decoration-none'
+        key={note.id}>
+        <Note note={note} />
+      </Link>
+    )}
+  </Wrapper> : <p className='text-center'>loading...</p>
 );
 
 export default Social;

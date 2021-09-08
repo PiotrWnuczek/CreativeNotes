@@ -6,12 +6,12 @@ const Note = ({ note }) => (
   <Card className='m-4'>
     <Card.Body>
       <Card.Title>{note.title}</Card.Title>
-      {note.firstname && note.lastname && <Card.Subtitle>
+      <Card.Subtitle>
         Created by: {note.firstname} {note.lastname}
-      </Card.Subtitle>}
-      {note.createdat && <Card.Text>
+      </Card.Subtitle>
+      <Card.Text>
         Created at: {moment(note.createdat.toDate()).calendar()}
-      </Card.Text>}
+      </Card.Text>
     </Card.Body>
   </Card>
 );
