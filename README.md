@@ -1,6 +1,6 @@
 # CreativeNotes
 
-Creative note taking application programmed with React, Redux and Firebase.
+Creative note taking application programmed with React, Redux and Firebase, app allows you to add personal and social notes.
 
 ### Technologies:
 - Project setup - Create React App
