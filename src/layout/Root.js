@@ -2,10 +2,10 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Menu from 'blocks/Menu';
-import Notes from 'layout/Notes';
+import Panel from 'layout/Panel';
 import Create from 'layout/Create';
 import Details from 'layout/Details';
-import Private from 'auth/Private';
+import Protect from 'auth/Protect';
 import Signin from 'auth/Signin';
 import Signup from 'auth/Signup';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,9 +24,9 @@ const Root = () => (
     <GlobalStyle />
     <Menu />
     <Switch>
-      <Private exact path='/' component={Notes} />
-      <Private path='/create' component={Create} />
-      <Private path='/notes/:id' component={Details} />
+      <Protect exact path='/' component={Panel} />
+      <Protect path='/create' component={Create} />
+      <Protect path='/notes/:id' component={Details} />
       <Route path='/signin' component={Signin} />
       <Route path='/signup' component={Signup} />
     </Switch>

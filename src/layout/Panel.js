@@ -3,16 +3,16 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Row, Col } from 'react-bootstrap';
-import List from 'blocks/List';
-import Info from 'blocks/Info';
+import Private from 'blocks/Private';
+import Public from 'blocks/Public';
 
-const Notes = ({ notes }) => (
+const Panel = ({ notes }) => (
   <Row className='m-0'>
-    <Col md={7}>
-      <List notes={notes} />
+    <Col md={6}>
+      <Private notes={notes} />
     </Col>
-    <Col md={5}>
-      <Info />
+    <Col md={6}>
+      <Public />
     </Col>
   </Row>
 );
@@ -24,4 +24,4 @@ const mapStateToProps = (state) => ({
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: 'notes' }]),
-)(Notes);
+)(Panel);
