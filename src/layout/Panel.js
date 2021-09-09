@@ -29,10 +29,12 @@ export default compose(
     {
       collection: 'users', doc: props.auth.uid,
       subcollections: [{ collection: 'notes' }],
+      orderBy: ['createdat', 'desc'],
       storeAs: 'personal',
     },
     {
       collection: 'notes',
+      orderBy: ['createdat', 'desc'],
       storeAs: 'social',
     },
   ]),
