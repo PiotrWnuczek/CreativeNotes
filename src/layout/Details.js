@@ -1,17 +1,23 @@
 import React from 'react';
 import moment from 'moment';
-import { Container } from 'react-bootstrap';
-import { firestoreConnect } from 'react-redux-firebase';
-import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { update } from 'logic/noteActions';
+import { Container } from 'react-bootstrap';
+import Content from 'blocks/Content';
 
-const Details = ({ note }) => (
+const Details = ({ note, update }) => (
   note ? <Container className='py-4'>
     <h1>{note.title}</h1>
-    <h3>{note.content}</h3>
+    <h3>{note.description}</h3>
+    <h5>
+      {note.firstname} {note.lastname}
+      {' | '}
+      {moment(note.createdat.toDate()).calendar()}
+    </h5>
     <hr />
-    <p>{note.firstname} {note.lastname}</p>
-    <p>{moment(note.createdat.toDate()).calendar()}</p>
+    <Content content={note.content} />
   </Container> : <p className='text-center'>loading...</p>
 );
 
@@ -25,7 +31,7 @@ const mapStateToProps = (state, ownProps) => {
       auth: state.firebase.auth,
       note: personal && personal[id],
     }
-  } else if (type === 'social') {
+  } else {
     return {
       auth: state.firebase.auth,
       note: social && social[id],
@@ -33,8 +39,12 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  update: (data) => dispatch(update(data)),
+});
+
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect(props => [
     {
       collection: 'users', doc: props.auth.uid,

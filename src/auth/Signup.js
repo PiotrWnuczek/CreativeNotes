@@ -14,13 +14,20 @@ const Title = styled.h1`
 
 const Signup = ({ signup, error, auth }) => (auth.uid ?
   <Redirect to='/' /> :
-  <Container className='py-4'>
+  <Container className='py-4' >
     <Title>Sign Up</Title>
-    <Formik initialValues={{ email: '', password: '', firstname: '', lastname: '' }}
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        firstname: '',
+        lastname: '',
+      }}
       onSubmit={(values, { resetForm }) => {
         signup(values);
         resetForm();
-      }}>
+      }}
+    >
       {({ values, handleChange, handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3'>
@@ -70,7 +77,7 @@ const Signup = ({ signup, error, auth }) => (auth.uid ?
         </Form>
       )}
     </Formik>
-  </Container >
+  </Container>
 );
 
 const mapStateToProps = (state) => ({

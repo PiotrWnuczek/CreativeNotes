@@ -16,11 +16,16 @@ const Signin = ({ signin, error, auth }) => (auth.uid ?
   <Redirect to='/' /> :
   <Container className='py-4'>
     <Title>Sign In</Title>
-    <Formik initialValues={{ email: '', password: '' }}
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
       onSubmit={(values, { resetForm }) => {
         signin(values);
         resetForm();
-      }}>
+      }}
+    >
       {({ values, handleChange, handleSubmit }) => (
         <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3'>

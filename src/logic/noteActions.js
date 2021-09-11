@@ -1,29 +1,34 @@
 export const create = (data) => (dispatch, getState, { getFirestore }) => {
   const firestore = getFirestore();
-  const profile = getState().firebase.profile;
   const authorid = getState().firebase.auth.uid;
-  data.type === 'personal' &&
-    firestore.collection('users').doc(authorid).collection('notes').add({
-      ...data,
-      firstname: profile.firstname,
-      lastname: profile.lastname,
-      authorid: authorid,
-      createdat: new Date(),
-    }).then(() => {
-      dispatch({ type: 'CREATE_SUCCESS', data });
-    }).catch((err) => {
-      dispatch({ type: 'CREATE_ERROR', err });
-    })
-  data.type === 'social' &&
-    firestore.collection('notes').add({
-      ...data,
-      firstname: profile.firstname,
-      lastname: profile.lastname,
-      authorid: authorid,
-      createdat: new Date(),
-    }).then(() => {
-      dispatch({ type: 'CREATE_SUCCESS', data });
-    }).catch((err) => {
-      dispatch({ type: 'CREATE_ERROR', err });
-    })
+  const profile = getState().firebase.profile;
+  const personal = firestore.collection('users').doc(authorid).collection('notes');
+  const social = firestore.collection('notes');
+  const ref = data.type === 'personal' ? personal : social;
+  ref.add({
+    ...data,
+    firstname: profile.firstname,
+    lastname: profile.lastname,
+    authorid: authorid,
+    createdat: new Date(),
+  }).then(() => {
+    dispatch({ type: 'CREATE_SUCCESS', data });
+  }).catch((err) => {
+    dispatch({ type: 'CREATE_ERROR', err });
+  })
+};
+
+export const update = (data) => (dispatch, getState, { getFirestore }) => {
+  const firestore = getFirestore();
+  const authorid = getState().firebase.auth.uid;
+  const personal = firestore.collection('users').doc(authorid).collection('notes');
+  const social = firestore.collection('notes');
+  const ref = data.type === 'personal' ? personal : social;
+  ref.child(data.id).update({
+    ...data,
+  }).then(() => {
+    dispatch({ type: 'UPDATE_SUCCESS', data });
+  }).catch((err) => {
+    dispatch({ type: 'UPDATE_ERROR', err });
+  })
 };

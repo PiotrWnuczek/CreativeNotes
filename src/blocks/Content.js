@@ -1,20 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { update } from 'logic/noteActions';
 import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import Item from 'blocks/Item';
 
-const Content = ({ content, setContent }) => (
+const Content = ({ content, update }) => (
   <div>
-    <Formik initialValues={{
-      content: '',
-      type: 'text',
-    }}
+    <Formik
+      initialValues={{
+        content: '',
+        type: 'text',
+      }}
       onSubmit={(values, { resetForm }) => {
-        setContent([...content, { ...values }]);
+        console.log(values);
         resetForm();
-      }}>
+      }}
+    >
       {({ values, handleChange, handleSubmit }) => (
-        <div>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className='mb-3'>
             <Form.Label>Note Content</Form.Label>
             <Form.Control
@@ -44,20 +48,22 @@ const Content = ({ content, setContent }) => (
               onChange={handleChange}
             />
           </Form.Group>
-          <Button
-            variant='secondary'
-            onClick={handleSubmit}
-          >
+          <Button variant='secondary' type='submit'>
             Add
           </Button>
-        </div>
+        </Form>
       )}
     </Formik>
-    {content.length !== 0 && <br />}
-    {content && content.map(item =>
-      <Item key={item.content} item={item} />
+    {content && <p>{content}</p>}
+    {Array.isArray(content) && content.map((item, index) =>
+      <Item key={index} item={item} />
     )}
   </div>
 );
 
-export default Content;
+const mapDispatchToProps = (dispatch) => ({
+  update: (data) => dispatch(update(data)),
+});
+
+export default connect(null, mapDispatchToProps)
+  (Content);
