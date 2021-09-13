@@ -21,13 +21,16 @@ const Create = ({ create, history }) => (
         type: 'personal',
       }}
       onSubmit={(values, { resetForm }) => {
-        create(values);
+        create({ ...values, content: [] });
         resetForm();
         history.push('/');
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={handleSubmit}
+          autoComplete='off'
+        >
           <Form.Group className='mb-3'>
             <Form.Label>Note Title</Form.Label>
             <Form.Control
@@ -41,11 +44,10 @@ const Create = ({ create, history }) => (
           <Form.Group className='mb-3'>
             <Form.Label>Note Description</Form.Label>
             <Form.Control
-              as='textarea'
-              rows={7}
               type='text'
               name='description'
               placeholder='description'
+              as='textarea' rows={7}
               onChange={handleChange}
               value={values.description}
             />

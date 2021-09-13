@@ -29,7 +29,10 @@ const Signup = ({ signup, error, auth }) => (auth.uid ?
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={handleSubmit}
+          autoComplete='off'
+        >
           <Form.Group className='mb-3'>
             <Form.Label>Email</Form.Label>
             <Form.Control

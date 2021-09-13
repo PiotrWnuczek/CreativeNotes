@@ -7,19 +7,25 @@ import { update } from 'logic/noteActions';
 import { Container } from 'react-bootstrap';
 import Content from 'blocks/Content';
 
-const Details = ({ note, update }) => (
-  note ? <Container className='py-4'>
-    <h1>{note.title}</h1>
-    <h3>{note.description}</h3>
-    <h5>
-      {note.firstname} {note.lastname}
-      {' | '}
-      {moment(note.createdat.toDate()).calendar()}
-    </h5>
-    <hr />
-    <Content content={note.content} />
-  </Container> : <p className='text-center'>loading...</p>
-);
+const Details = ({ note, update, ...props }) => {
+  const { id } = props.match.params;
+  return (
+    note ? <Container className='py-4'>
+      <h1>{note.title}</h1>
+      <h3>{note.description}</h3>
+      <h5>
+        {note.firstname} {note.lastname} {' | '}
+        {moment(note.createdat.toDate()).calendar()}
+      </h5>
+      <hr />
+      <Content
+        id={id}
+        type={note.type}
+        content={note.content}
+      />
+    </Container> : <p className='text-center'>loading...</p>
+  )
+};
 
 const mapStateToProps = (state, ownProps) => {
   const type = ownProps.match.params.type;
@@ -40,7 +46,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  update: (data) => dispatch(update(data)),
+  update: (data, id) => dispatch(update(data, id)),
 });
 
 export default compose(

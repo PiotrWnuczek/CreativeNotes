@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import Item from 'blocks/Item';
 
-const Content = ({ content, update }) => (
+const Content = ({ content, type, id, update }) => (
   <div>
     <Formik
       initialValues={{
@@ -13,19 +13,22 @@ const Content = ({ content, update }) => (
         type: 'text',
       }}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
+        update({ content: [...content, values], type }, id);
         resetForm();
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
-        <Form onSubmit={handleSubmit}>
+        <Form
+          onSubmit={handleSubmit}
+          autoComplete='off'
+        >
           <Form.Group className='mb-3'>
             <Form.Label>Note Content</Form.Label>
             <Form.Control
-              as='textarea'
               type='text'
               name='content'
               placeholder='content'
+              as='textarea' rows={2}
               onChange={handleChange}
               value={values.content}
             />
@@ -54,7 +57,7 @@ const Content = ({ content, update }) => (
         </Form>
       )}
     </Formik>
-    {content && <p>{content}</p>}
+    <br />
     {Array.isArray(content) && content.map((item, index) =>
       <Item key={index} item={item} />
     )}
@@ -62,7 +65,7 @@ const Content = ({ content, update }) => (
 );
 
 const mapDispatchToProps = (dispatch) => ({
-  update: (data) => dispatch(update(data)),
+  update: (data, id) => dispatch(update(data, id)),
 });
 
 export default connect(null, mapDispatchToProps)

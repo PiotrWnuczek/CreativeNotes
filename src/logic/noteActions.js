@@ -18,13 +18,13 @@ export const create = (data) => (dispatch, getState, { getFirestore }) => {
   })
 };
 
-export const update = (data) => (dispatch, getState, { getFirestore }) => {
+export const update = (data, id) => (dispatch, getState, { getFirestore }) => {
   const firestore = getFirestore();
   const authorid = getState().firebase.auth.uid;
   const personal = firestore.collection('users').doc(authorid).collection('notes');
   const social = firestore.collection('notes');
   const ref = data.type === 'personal' ? personal : social;
-  ref.child(data.id).update({
+  ref.doc(id).update({
     ...data,
   }).then(() => {
     dispatch({ type: 'UPDATE_SUCCESS', data });
