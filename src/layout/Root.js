@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Lato';
   }
+  .pointer {
+    cursor: pointer;
+  }
 `;
 
 const Root = () => (

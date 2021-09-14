@@ -1,20 +1,96 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { update } from 'logic/noteActions';
-import { Container } from 'react-bootstrap';
+import { FaPen } from 'react-icons/fa';
+import { Container, Form } from 'react-bootstrap';
+import { InputGroup, Button } from 'react-bootstrap';
+import { Formik } from 'formik';
 import Content from 'blocks/Content';
 
 const Details = ({ note, update, ...props }) => {
   const { id } = props.match.params;
+  const [edit, setEdit] = useState(false);
+
   return (
     note ? <Container className='py-4'>
-      <h1>{note.title}</h1>
-      <h3>{note.description}</h3>
+      {edit === 'title' ? <Formik
+        initialValues={{
+          title: note.title,
+        }}
+        onSubmit={(values, { resetForm }) => {
+          update({ ...values, type: note.type }, id);
+          setEdit(false);
+          resetForm();
+        }}
+      >
+        {({ values, handleChange, handleSubmit }) => (
+          <Form
+            onSubmit={handleSubmit}
+            autoComplete='off'
+          >
+            <InputGroup className='mb-3'>
+              <Form.Control autoFocus
+                type='text'
+                name='title'
+                placeholder='title'
+                onChange={handleChange}
+                value={values.title}
+              />
+              <Button variant='outline-secondary' type='submit'>
+                Save
+              </Button>
+            </InputGroup>
+          </Form>
+        )}
+      </Formik> : <h1>
+        {note.title}
+        <FaPen
+          onClick={() => setEdit('title')}
+          className='pb-2 mx-2 pointer'
+        />
+      </h1>}
+      {edit === 'description' ? <Formik
+        initialValues={{
+          description: note.description,
+        }}
+        onSubmit={(values, { resetForm }) => {
+          update({ ...values, type: note.type }, id);
+          setEdit(false);
+          resetForm();
+        }}
+      >
+        {({ values, handleChange, handleSubmit }) => (
+          <Form
+            onSubmit={handleSubmit}
+            autoComplete='off'
+          >
+            <InputGroup className='mb-3'>
+              <Form.Control autoFocus
+                type='text'
+                name='description'
+                placeholder='description'
+                onChange={handleChange}
+                value={values.description}
+              />
+              <Button variant='outline-secondary' type='submit'>
+                Save
+              </Button>
+            </InputGroup>
+          </Form>
+        )}
+      </Formik> : <h3>
+        {note.description}
+        <FaPen
+          onClick={() => setEdit('description')}
+          className='pb-2 mx-2 pointer'
+        />
+      </h3>}
       <h5>
-        {note.firstname} {note.lastname} {' | '}
+        {note.firstname} {note.lastname}
+        {' | '}
         {moment(note.createdat.toDate()).calendar()}
       </h5>
       <hr />
