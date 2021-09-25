@@ -38,7 +38,7 @@ const Item = ({ item, idx, updateItem, deleteItem }) => {
             </InputGroup>
           </Form>
         )}
-      </Formik> : <h5>
+      </Formik> : <h5 className='m-0 pb-2'>
         {item.type === 'text' && <FaAlignJustify />}
         {item.type === 'todo' && <FaRegSquare
           onClick={() => updateItem({ type: 'done' }, idx)}

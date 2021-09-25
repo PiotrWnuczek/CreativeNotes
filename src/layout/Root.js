@@ -13,9 +13,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: 'Lato';
+    overflow-x: hidden;
   }
   .pointer {
     cursor: pointer;
