@@ -38,11 +38,11 @@ const Content = ({ content, type, id, update }) => (
               Add Text
             </Button>
             <Button
-              onClick={() => values.type = 'task'}
+              onClick={() => values.type = 'todo'}
               variant='outline-secondary'
               type='submit'
             >
-              Add Task
+              Add Todo
             </Button>
           </InputGroup>
         </Form>
