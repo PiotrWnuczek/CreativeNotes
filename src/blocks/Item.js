@@ -4,7 +4,7 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 import { FaRegSquare, FaRegCheckSquare } from 'react-icons/fa';
 import { FaAlignJustify, FaPen, FaTrash } from 'react-icons/fa';
 
-const Item = ({ item }) => {
+const Item = ({ item, idx, updateItem, deleteItem }) => {
   const [edit, setEdit] = useState(false);
 
   return (
@@ -14,7 +14,7 @@ const Item = ({ item }) => {
           content: item.content,
         }}
         onSubmit={(values, { resetForm }) => {
-          console.log(values);
+          updateItem(values, idx);
           setEdit(false);
           resetForm();
         }}
@@ -40,8 +40,14 @@ const Item = ({ item }) => {
         )}
       </Formik> : <h5>
         {item.type === 'text' && <FaAlignJustify />}
-        {item.type === 'todo' && <FaRegSquare className='pointer' />}
-        {item.type === 'done' && <FaRegCheckSquare className='pointer' />}
+        {item.type === 'todo' && <FaRegSquare
+          onClick={() => updateItem({ type: 'done' }, idx)}
+          className='pointer'
+        />}
+        {item.type === 'done' && <FaRegCheckSquare
+          onClick={() => updateItem({ type: 'todo' }, idx)}
+          className='pointer'
+        />}
         <span className='mx-2'>
           {item.content}
         </span>
@@ -50,7 +56,7 @@ const Item = ({ item }) => {
           className='pb-1 mx-2 pointer'
         />
         <FaTrash
-          onClick={() => console.log('delete')}
+          onClick={() => deleteItem(idx)}
           className='pb-1 mx-2 pointer'
         />
       </h5>}
