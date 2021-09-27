@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import Menu from 'blocks/Menu';
 import Panel from 'layout/Panel';
 import Create from 'layout/Create';
@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Root = () => (
-  <BrowserRouter>
+  <HashRouter>
     <GlobalStyle />
     <Menu />
     <Switch>
@@ -33,7 +33,7 @@ const Root = () => (
       <Route path='/signin' component={Signin} />
       <Route path='/signup' component={Signup} />
     </Switch>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Root;
