@@ -3,14 +3,14 @@ import moment from 'moment';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { update } from 'logic/noteActions';
+import { update, remove } from 'logic/noteActions';
 import { FaPen } from 'react-icons/fa';
 import { Container, Form } from 'react-bootstrap';
 import { InputGroup, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import Content from 'blocks/Content';
 
-const Details = ({ note, update, ...props }) => {
+const Details = ({ note, update, remove, history, ...props }) => {
   const { id } = props.match.params;
   const [edit, setEdit] = useState(false);
 
@@ -99,6 +99,23 @@ const Details = ({ note, update, ...props }) => {
         type={note.type}
         content={note.content}
       />
+      <div className='my-3'>
+        <Button
+          variant='secondary'
+          onClick={() => history.push('/')}
+        >
+          Close
+        </Button> {' '}
+        <Button
+          variant='secondary'
+          onClick={() => {
+            remove({ type: note.type }, id);
+            history.push('/');
+          }}
+        >
+          Delete
+        </Button>
+      </div>
     </Container> : <p className='text-center'>loading...</p>
   )
 };
@@ -123,6 +140,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   update: (data, id) => dispatch(update(data, id)),
+  remove: (data, id) => dispatch(remove(data, id)),
 });
 
 export default compose(

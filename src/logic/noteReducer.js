@@ -1,6 +1,4 @@
-const initial = {
-  notes: [],
-};
+const initial = { notes: [] };
 
 const noteReducer = (state = initial, action) => {
   switch (action.type) {
@@ -16,8 +14,13 @@ const noteReducer = (state = initial, action) => {
     case 'UPDATE_ERROR':
       console.log(action.err);
       return state;
-    default:
+    case 'REMOVE_SUCCESS':
+      console.log(action.id);
       return state;
+    case 'REMOVE_ERROR':
+      console.log(action.err);
+      return state;
+    default: return state;
   }
 };
 
